@@ -61,12 +61,48 @@
         android:textSize="@dimen/description" />
 
     <ImageView
-        android:layout_marginBottom="@dimen/padding_10"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_backdep"
         android:id="@+id/imgstatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/description"
         android:layout_marginTop="@dimen/padding_10" />
+    <TextView
+        android:layout_below="@+id/imgstatus"
+        android:id="@+id/tvsolike"
+        android:textColor="@android:color/black"
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/padding_10"
+        android:text=" 0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/padding_10"
+        android:layout_marginRight="@dimen/padding_10"
+
+        android:layout_below="@+id/tvsolike"
+        android:background="#DDDDDD"
+        android:orientation="vertical"
+        android:id="@+id/llokok"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvLike"
+        android:textColor="@android:color/black"
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/ic_tim"
+        android:layout_marginLeft="@dimen/padding_10"
+        android:layout_below="@+id/llokok"
+        android:text=" Like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

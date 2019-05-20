@@ -12,8 +12,9 @@ public class Status {
     public String Status;
     public int IDtaikhoan;
     public String Imgstatus;
+    public int IDtaikhoanOnLine;
 
-    public Status(int ID, String name, String anh, int phut, int gio, int ngay, int thang, int nam, String status, int IDtaikhoan, String imgstatus) {
+    public Status(int ID, String name, String anh, int phut, int gio, int ngay, int thang, int nam, String status, int IDtaikhoan, String imgstatus, int IDtaikhoanOnLine) {
         this.ID = ID;
         Name = name;
         Anh = anh;
@@ -25,6 +26,7 @@ public class Status {
         Status = status;
         this.IDtaikhoan = IDtaikhoan;
         Imgstatus = imgstatus;
+        this.IDtaikhoanOnLine = IDtaikhoanOnLine;
     }
 
     public int getID() {
@@ -113,5 +115,13 @@ public class Status {
 
     public void setImgstatus(String imgstatus) {
         Imgstatus = imgstatus;
+    }
+
+    public int getIDtaikhoanOnLine() {
+        return IDtaikhoanOnLine;
+    }
+
+    public void setIDtaikhoanOnLine(int IDtaikhoanOnLine) {
+        this.IDtaikhoanOnLine = IDtaikhoanOnLine;
     }
 }

@@ -11,12 +11,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.example.doannv.bangtinfb.adapter.StatusAdapter;
 import com.example.doannv.bangtinfb.fragment.MainFragment;
 import com.example.doannv.bangtinfb.fragment.MenuFragment;
 import com.example.doannv.bangtinfb.fragment.ThongTinFragment;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    StatusAdapter statusAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.frameLayout, fragment);
                     fragmentTransaction.commit();
+
                     Intent intent = getIntent();
 
                     Bundle bundle = new Bundle();
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putString("HinhAnh",Hinh);
                     bundle.putString("Hoten",hoten);
                     bundle.putString("Id",ID);
+
                     fragment.setArguments(bundle);
                 }
                 if (menuItem.getItemId () == R.id.ThongTin) {
@@ -55,6 +59,17 @@ public class MainActivity extends AppCompatActivity {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.frameLayout, fragment);
                     fragmentTransaction.commit();
+                    Intent intent = getIntent();
+                    Bundle bundle = new Bundle();
+                    String Hinh = intent.getStringExtra("hinhanh");
+                    String hoten = intent.getStringExtra("hoten");
+                    String ID = intent.getStringExtra("idok");
+
+
+                    bundle.putString("HinhAnh",Hinh);
+                    bundle.putString("Hoten",hoten);
+                    bundle.putString("Id",ID);
+                    fragment.setArguments(bundle);
                 }
                 if (menuItem.getItemId () == R.id.Menu) {
                     fragment = new MenuFragment();
@@ -88,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("Hoten",hoten);
         bundle.putString("Id",ID);
         fragment.setArguments(bundle);
-
     }
 }
 

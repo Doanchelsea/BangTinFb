@@ -83,7 +83,7 @@ public class StatusActivity extends AppCompatActivity {
                         String Hinh = intent.getStringExtra("Hinh");
                         String Ten = intent.getStringExtra("Ten");
                         String ID = intent.getStringExtra("ID23");
-                        Intent intent1 = new Intent(StatusActivity.this,MainActivity.class);
+                       Intent intent1 = new Intent(StatusActivity.this,MainActivity.class);
                         intent1.putExtra("hoten",Ten);
                         intent1.putExtra("hinhanh",Hinh);
                         String ID2 = String.valueOf(ID);

@@ -3,9 +3,7 @@ package com.example.doannv.bangtinfb.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,12 +13,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.doannv.bangtinfb.R;
 import com.example.doannv.bangtinfb.StatusActivity;
 import com.example.doannv.bangtinfb.adapter.StatusAdapter;
+import com.example.doannv.bangtinfb.adapter.StatusAdapter.ItemHolder;
 import com.example.doannv.bangtinfb.model.Status;
 import com.example.doannv.bangtinfb.unti.Server;
 import com.facebook.shimmer.ShimmerFrameLayout;
@@ -54,12 +50,14 @@ public class MainFragment extends Fragment {
     NestedScrollView nestedScrollView;
     RecyclerView recyclerview;
     RelativeLayout ReLdangtin;
+
     CircleImageView CIVdangtin;
     TextView eddangtin;
     ProgressBar progressBar;
     ArrayList<Status> mangstatus;
     StatusAdapter statusAdapter;
     int page = 1;
+    int IDOK;
     boolean isloading;
     boolean limitdata = false;
 
@@ -94,7 +92,6 @@ public class MainFragment extends Fragment {
                     String Hinh = bundle.getString("HinhAnh");
                     String Hoten = bundle.getString("Hoten");
                     String ID = bundle.getString("Id");
-                    Log.d("222222222222222", ID);
 
                     intent.putExtra("Hinh", Hinh);
                     intent.putExtra("Ten", Hoten);
@@ -113,7 +110,6 @@ public class MainFragment extends Fragment {
                     String Hinh = bundle.getString("HinhAnh");
                     String Hoten = bundle.getString("Hoten");
                     String ID = bundle.getString("Id");
-                    Log.d("222222222222222", ID);
 
                     intent.putExtra("Hinh", Hinh);
                     intent.putExtra("Ten", Hoten);
@@ -169,6 +165,11 @@ public class MainFragment extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, duongdan, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Bundle bundle = getArguments();
+                if (bundle != null) {
+                    String ID1 = bundle.getString("Id");
+                    IDOK = Integer.valueOf(ID1);
+                }
                 int ID = 0;
                 String Name = "";
                 String Anh = "";
@@ -196,7 +197,7 @@ public class MainFragment extends Fragment {
                             Status = jsonObject.getString("statusok");
                             IDTK = jsonObject.getInt("idtaikhoan");
                             ImgStatus = jsonObject.getString("imgstatus");
-                            mangstatus.add(new Status(ID, Name, Anh, Phut, Gio, Ngay, Thang, Nam, Status, IDTK, ImgStatus));
+                            mangstatus.add(new Status(ID, Name, Anh, Phut, Gio, Ngay, Thang, Nam, Status, IDTK, ImgStatus,IDOK));
                             statusAdapter.notifyDataSetChanged();
                             limitdata = false;
                         }
@@ -218,12 +219,13 @@ public class MainFragment extends Fragment {
             }
         });
         requestQueue.add(stringRequest);
+
     }
 
     private void AnhXa() {
         bottomNavigationView = statics.findViewById(R.id.btNavigation);
-
         mShimmerViewContainer = statics.findViewById(R.id.shimmer_view_container);
+
         recyclerview = statics.findViewById(R.id.RCVstatus);
         mangstatus = new ArrayList<>();
         statusAdapter = new StatusAdapter(getContext(), mangstatus);

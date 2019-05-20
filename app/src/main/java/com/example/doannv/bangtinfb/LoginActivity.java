@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.doannv.bangtinfb.adapter.StatusAdapter;
 import com.example.doannv.bangtinfb.unti.Server;
 
 import org.json.JSONArray;
@@ -111,6 +112,12 @@ public class LoginActivity extends AppCompatActivity {
                                     intent.putExtra("hinhanh",hinhanh);
                                     String ID2 = String.valueOf(ID);
                                     intent.putExtra("idok",ID2);
+
+
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("OK",ID2);
+                                    intent.putExtras(bundle);
+
                                     if (checkbox.isChecked()){
                                         preferences.edit().putString("usernameok", taikhoan1).commit();
                                         preferences.edit().putString("passwordok", matkhau1).commit();
@@ -142,6 +149,7 @@ public class LoginActivity extends AppCompatActivity {
         tvDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(LoginActivity.this, DangKyActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.ani_enter,R.anim.ani_exit);
